@@ -16,12 +16,10 @@ const Anecdote = ({ anec, voting }) => (
 
 const Anecdotes = () => {
 
-  const anecdotes = useSelector(state => {
-    console.log(state.anecdotes[0].content);
-    // return state.anecdotes.filter(anecdote => anecdote.content.test(/state.filter/i)) 
-    return state.anecdotes.filter(anecdote => new RegExp(state.filter, 'i').test(anecdote.content)) 
-  })
   const dispatch = useDispatch()
+  const anecdotes = useSelector(state => {
+    return state.anecdotes.filter(anecdote => new RegExp(state.filter, 'i').test(anecdote.content))
+  })
 
   const voting = ({ id, content }) => {
     dispatch(vote(id))
